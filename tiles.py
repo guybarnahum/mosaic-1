@@ -17,7 +17,7 @@ def fit_in_polygon(p, nearby_polygons):
         i_largest = np.argmax([p_i.area for p_i in p])
         p = p[i_largest]
     # remove pathologic polygons with holes (rare event):
-    if p.type not in ['MultiLineString','LineString', 'GeometryCollection']:
+    if p.geom_type not in ['MultiLineString','LineString', 'GeometryCollection']:
         if p.interiors: # check for attribute interiors if accessible
             p = Polygon(list(p.exterior.coords))
     return p

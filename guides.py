@@ -6,6 +6,7 @@
 
 import numpy as np
 from skimage import draw
+from skimage import morphology as skm
 from scipy.ndimage import label, morphology
 import copy
 import time
@@ -22,7 +23,7 @@ def pixellines_to_ordered_points(matrix, half_tile):
     # import cv2
     # chains3 = []
 
-    matrix = sk.morphology.skeletonize(matrix) # nicer lines, better results
+    matrix = skm.skeletonize(matrix) # nicer lines, better results
     matrix_labeled, chain_count = label(matrix, structure=[[1,1,1], [1,1,1], [1,1,1]]) # find chains
     chains = []
     for i_chain in range(1,chain_count):

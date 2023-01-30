@@ -6,6 +6,7 @@ import skimage as sk
 from skimage.io import imread
 from skimage import filters
 from skimage import transform
+from skimage import morphology
 import plotting
 from pathlib import Path
 
@@ -117,7 +118,7 @@ def edges_hed(img, gauss=None, plot=[]):
     hed_seg[hed_matrix<0.5]=0
     
     # skeletonize to get inner lines
-    img_edges = sk.morphology.skeletonize(hed_seg).astype(int)
+    img_edges = morphology.skeletonize(hed_seg).astype(int)
 
     # option to make plot lines thicker:
     #from skimage.morphology import square,dilation
